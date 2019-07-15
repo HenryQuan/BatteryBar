@@ -15,26 +15,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.variableLength)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Show "Hello World"
-        if let button = statusItem.button {
-            button.title = "Hello World"
+        // Update time remains everything 10 second
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (_) in
+            if let button = self.statusItem.button {
+                button.title = self.updateTimeRemain()
+            }
         }
-        
-        print(updateTimeRemain())
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 
+    /// Get time remain for this machine
+    /// Returns a string like 2:12 remaning
     func updateTimeRemain() -> String {
-        var remain = "unkown";
+        var remain = "unknown";
         // pmset -g batt
         let output = runCommand(cmd: "/usr/bin/pmset", args: "-g", "batt").output
         let time = output[1].split(separator: ";").last
         if time != nil {
             remain = String(time!)
         }
+        
         return remain
     }
     
