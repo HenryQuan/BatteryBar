@@ -15,22 +15,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.variableLength)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        self.updateMenu(text: "??? remaining")
         // Update time remains everything 10 second
         Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (_) in
-            if let button = self.statusItem.button {
-                button.title = self.updateTimeRemain()
-            }
+            self.updateMenu(text: self.updateTimeRemain())
         }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
+    
+    /// Update menu bar time display
+    func updateMenu(text: String) {
+        if let button = self.statusItem.button {
+            button.title = text
+        }
+    }
 
     /// Get time remain for this machine
     /// Returns a string like 2:12 remaning
     func updateTimeRemain() -> String {
-        var remain = "unknown";
+        var remain = "??? remaining";
         // pmset -g batt
         let output = runCommand(cmd: "/usr/bin/pmset", args: "-g", "batt").output
         let time = output[1].split(separator: ";").last
@@ -43,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// From https://stackoverflow.com/questions/29514738/get-terminal-output-after-a-command-swift
     /// Run command
-    func runCommand(cmd : String, args : String...) -> (output: [String], error: [String], exitCode: Int32) {
+    func runCommand(cmd: String, args: String...) -> (output: [String], error: [String], exitCode: Int32) {
         
         var output : [String] = []
         var error : [String] = []
