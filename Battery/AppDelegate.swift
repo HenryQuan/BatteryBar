@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.variableLength)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        self.updateMenu(text: "??? remaining")
+        self.updateMenu(text: self.updateTimeRemain())
         // Update time remains everything 10 second
         Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (_) in
             self.updateMenu(text: self.updateTimeRemain())
