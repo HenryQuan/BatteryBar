@@ -11,6 +11,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    // From https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos
     // Define a menu
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.variableLength)
     
