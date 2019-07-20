@@ -14,17 +14,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // From https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos
     // Define a menu
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.variableLength)
+    var timer: Timer?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        self.setupMenu()
+        
         self.updateMenu(text: self.updateTimeRemain())
         // Update time remains everything 10 second
-        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (_) in
+        timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (_) in
             self.updateMenu(text: self.updateTimeRemain())
         }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+        self.timer = nil
+    }
+    
+    func setupMenu() {
+        let menu = NSMenu()
+        
+        menu.addItem(NSMenuItem(title: Constant.Version, action: nil, keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "About", action: nil, keyEquivalent: ""))
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
+        
+        statusItem.menu = menu
     }
     
     /// Update menu bar time display
@@ -37,7 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Get time remain for this machine
     /// Returns a string like 2:12 remaning
     func updateTimeRemain() -> String {
-        var remain = "?:??";
+        var remain = Constant.Estimate;
         // pmset -g batt
         let output = runCommand(cmd: "/usr/bin/pmset", args: "-g", "batt").output
         

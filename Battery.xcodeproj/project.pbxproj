@@ -10,6 +10,7 @@
 		92675B9022DC8AB0009B8559 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92675B8F22DC8AB0009B8559 /* AppDelegate.swift */; };
 		92675B9422DC8AB2009B8559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92675B9322DC8AB2009B8559 /* Assets.xcassets */; };
 		92675B9722DC8AB2009B8559 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92675B9522DC8AB2009B8559 /* Main.storyboard */; };
+		929E5A1522E2B4CE00FBEE1A /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E5A1422E2B4CE00FBEE1A /* Constant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		92675B9622DC8AB2009B8559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		92675B9822DC8AB2009B8559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92675B9922DC8AB2009B8559 /* Battery.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Battery.entitlements; sourceTree = "<group>"; };
+		929E5A1422E2B4CE00FBEE1A /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				92675B9522DC8AB2009B8559 /* Main.storyboard */,
 				92675B9822DC8AB2009B8559 /* Info.plist */,
 				92675B9922DC8AB2009B8559 /* Battery.entitlements */,
+				929E5A1422E2B4CE00FBEE1A /* Constant.swift */,
 			);
 			path = Battery;
 			sourceTree = "<group>";
@@ -131,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92675B9022DC8AB0009B8559 /* AppDelegate.swift in Sources */,
+				929E5A1522E2B4CE00FBEE1A /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
