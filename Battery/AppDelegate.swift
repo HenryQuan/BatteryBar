@@ -36,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Get time remain for this machine
     /// Returns a string like 2:12 remaning
     func updateTimeRemain() -> String {
-        var remain = "- no estimate -";
+        var remain = "?:??";
         // pmset -g batt
         let output = runCommand(cmd: "/usr/bin/pmset", args: "-g", "batt").output
         
@@ -74,7 +74,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// From https://stackoverflow.com/questions/29514738/get-terminal-output-after-a-command-swift
     /// Run command
     func runCommand(cmd: String, args: String...) -> (output: [String], error: [String], exitCode: Int32) {
-        
         var output : [String] = []
         var error : [String] = []
         
@@ -89,12 +88,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         task.launch()
         
+        // Get output data
         let outdata = outpipe.fileHandleForReading.readDataToEndOfFile()
         if var string = String(data: outdata, encoding: .utf8) {
             string = string.trimmingCharacters(in: .newlines)
             output = string.components(separatedBy: "\n")
         }
         
+        // Get error data
         let errdata = errpipe.fileHandleForReading.readDataToEndOfFile()
         if var string = String(data: errdata, encoding: .utf8) {
             string = string.trimmingCharacters(in: .newlines)
