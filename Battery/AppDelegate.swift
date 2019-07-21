@@ -35,11 +35,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
         
         menu.addItem(NSMenuItem(title: Constant.Version, action: nil, keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "About", action: nil, keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "About", action: #selector(showAbout), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
         
         statusItem.menu = menu
+    }
+    
+    /// Show about alert
+    @objc func showAbout() {
+        let alert = NSAlert.init()
+        alert.messageText = "BatteryBar shows an estimation of how much time remaining for your MacBook"
+        
+        alert.runModal()
     }
     
     /// Update menu bar time display
