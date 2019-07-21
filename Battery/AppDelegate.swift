@@ -35,11 +35,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
         
         menu.addItem(NSMenuItem(title: Constant.Version, action: nil, keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "GitHub", action: #selector(showGitHub), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "About", action: #selector(showAbout), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
         
         statusItem.menu = menu
+    }
+    
+    /// Open my github repo
+    @objc func showGitHub() {
+        let url = URL(string: "https://github.com/HenryQuan/BatteryBar")!
+        let ws = NSWorkspace.init()
+        ws.open(url)
     }
     
     /// Show about alert
