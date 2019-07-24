@@ -43,10 +43,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem.separator())
         
         // Add more items depeding on output
+        // var hasInfo = true
         var info = self.battery.getDetailedBatteryInfo()
         if info == "" {
             // Provide a default value
             info = "No information available"
+            // hasInfo = false
         }
         
         // Add menu items based on output
@@ -54,6 +56,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         for s in output {
             menu.addItem(NSMenuItem(title: String(s), action: nil, keyEquivalent: ""))
         }
+        
+        // Display everything
+//        if hasInfo {
+//            menu.addItem(NSMenuItem(title: "Show more info", action: #selector(showAllInfo), keyEquivalent: ""))
+//        }
         
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit BatteryBar", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
@@ -76,8 +83,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /// Show everything inside an alert
-    @objc func showAllInfor() {
-        let alert = NSAlert.init()
+    @objc func showAllInfo() {
+        let alert = NSAlert()
+        alert.messageText = battery.allInfo
+        alert.runModal()
     }
     
     /// Update menu bar time display
