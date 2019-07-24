@@ -11,10 +11,13 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    var timer: Timer?
     // From https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos
     // Define a menu
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.variableLength)
-    var timer: Timer?
+    
+    var battery = Battery()
+    var batteryInfoItem = NSMenuItem()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         self.setupMenu()
@@ -35,8 +38,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
         
         menu.addItem(NSMenuItem(title: Constant.Version, action: nil, keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "GitHub", action: #selector(showGitHub), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "About", action: #selector(showAbout), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Source code on GitHub", action: #selector(showGitHub), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "About BatteryBar", action: #selector(showAbout), keyEquivalent: ""))
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(batteryInfoItem)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit BatteryBar", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         

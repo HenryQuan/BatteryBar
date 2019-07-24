@@ -12,6 +12,7 @@
 		92675B9722DC8AB2009B8559 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92675B9522DC8AB2009B8559 /* Main.storyboard */; };
 		929E5A1522E2B4CE00FBEE1A /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929E5A1422E2B4CE00FBEE1A /* Constant.swift */; };
 		92DD8E1922E83AAB0012C96B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DD8E1822E83AAB0012C96B /* Utils.swift */; };
+		92DD8E1B22E83D2D0012C96B /* Battery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DD8E1A22E83D2D0012C96B /* Battery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		92675B9922DC8AB2009B8559 /* Battery.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Battery.entitlements; sourceTree = "<group>"; };
 		929E5A1422E2B4CE00FBEE1A /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		92DD8E1822E83AAB0012C96B /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		92DD8E1A22E83D2D0012C96B /* Battery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Battery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				929E5A1422E2B4CE00FBEE1A /* Constant.swift */,
 				92DD8E1822E83AAB0012C96B /* Utils.swift */,
+				92DD8E1A22E83D2D0012C96B /* Battery.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				92675B9022DC8AB0009B8559 /* AppDelegate.swift in Sources */,
 				929E5A1522E2B4CE00FBEE1A /* Constant.swift in Sources */,
 				92DD8E1922E83AAB0012C96B /* Utils.swift in Sources */,
+				92DD8E1B22E83D2D0012C96B /* Battery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
