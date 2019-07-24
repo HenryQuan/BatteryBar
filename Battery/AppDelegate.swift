@@ -17,12 +17,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.variableLength)
     
     var battery = Battery()
-    var batteryInfoItem = NSMenuItem()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         self.setupMenu()
         
         self.updateMenu(text: self.battery.updateTimeRemaining())
+        
         // Update time remains everything 10 second
         timer = Timer.scheduledTimer(withTimeInterval: 6, repeats: true) { (_) in
             self.updateMenu(text: self.battery.updateTimeRemaining())
@@ -41,7 +41,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: "Source code on GitHub", action: #selector(showGitHub), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "About BatteryBar", action: #selector(showAbout), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(batteryInfoItem)
+        
+        // Add more items
+        let info = self.battery.getDetailedBatteryInfo().split(separator: "\n")
+        for s in info {
+            menu.addItem(NSMenuItem(title: String(s), action: nil, keyEquivalent: ""))
+        }
+        
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit BatteryBar", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         

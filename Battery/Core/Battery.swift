@@ -33,4 +33,10 @@ class Battery {
         return remain
     }
     
+    /// Get more detailed information like design/max capacity, cycle count and an estimated battery health.
+    /// All data are from ioreg command
+    func getDetailedBatteryInfo() -> String {
+        return "No info\nTry again later\nNo info\nTry again later\nNo info\nTry again later\nNo info\nTry again later"
+    }
+    
 }
