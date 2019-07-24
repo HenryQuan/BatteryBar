@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		925D77AD22E850A7003EBB0D /* IORegString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925D77AC22E850A7003EBB0D /* IORegString.swift */; };
 		92675B9022DC8AB0009B8559 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92675B8F22DC8AB0009B8559 /* AppDelegate.swift */; };
 		92675B9422DC8AB2009B8559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92675B9322DC8AB2009B8559 /* Assets.xcassets */; };
 		92675B9722DC8AB2009B8559 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92675B9522DC8AB2009B8559 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		925D77AC22E850A7003EBB0D /* IORegString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IORegString.swift; sourceTree = "<group>"; };
 		92675B8C22DC8AB0009B8559 /* BatteryBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BatteryBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92675B8F22DC8AB0009B8559 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92675B9322DC8AB2009B8559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				929E5A1422E2B4CE00FBEE1A /* Constant.swift */,
 				92DD8E1822E83AAB0012C96B /* Utils.swift */,
 				92DD8E1A22E83D2D0012C96B /* Battery.swift */,
+				925D77AC22E850A7003EBB0D /* IORegString.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			files = (
 				92675B9022DC8AB0009B8559 /* AppDelegate.swift in Sources */,
 				929E5A1522E2B4CE00FBEE1A /* Constant.swift in Sources */,
+				925D77AD22E850A7003EBB0D /* IORegString.swift in Sources */,
 				92DD8E1922E83AAB0012C96B /* Utils.swift in Sources */,
 				92DD8E1B22E83D2D0012C96B /* Battery.swift in Sources */,
 			);

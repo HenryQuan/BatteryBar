@@ -38,9 +38,14 @@ class Battery {
     func getDetailedBatteryInfo() -> String {
         // Get output from ioreg -brc AppleSmartBattery
         let output = Utils.runCommand(cmd: "/usr/sbin/ioreg", args: "-brc", "AppleSmartBattery").output.joined(separator: "\n")
+        
         let matches = Utils.matches(for: "\"(.*?)\" = (.*)", in: output)
-        print()
-        return output
+        var finalOutput = ""
+        for m in matches {
+            
+        }
+        
+        return finalOutput
     }
     
 }
