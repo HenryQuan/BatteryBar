@@ -22,10 +22,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         self.setupMenu()
         
-        self.updateMenu(text: self.updateTimeRemain())
+        self.updateMenu(text: self.battery.updateTimeRemaining())
         // Update time remains everything 10 second
         timer = Timer.scheduledTimer(withTimeInterval: 6, repeats: true) { (_) in
-            self.updateMenu(text: self.updateTimeRemain())
+            self.updateMenu(text: self.battery.updateTimeRemaining())
         }
     }
 
@@ -68,29 +68,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let button = self.statusItem.button {
             button.title = text
         }
-    }
-
-    /// Get time remain for this machine
-    /// Returns a string like 2:12 remaning
-    func updateTimeRemain() -> String {
-        var remain = Constant.Estimate;
-        // pmset -g batt
-        let output = Utils.runCommand(cmd: "/usr/bin/pmset", args: "-g", "batt").output
-        
-        // Find string with format 1:23
-        let matches = Utils.matches(for: "[0-9]+:[0-9]+", in: output[1])
-        if matches.count > 0 {
-            remain = matches[0]
-        }
-        
-        // Add different emoji to distinguish different mode
-        if output.joined().contains("discharg") {
-            remain += "🔋"
-        } else {
-            remain += "⚡️"
-        }
-        
-        return remain
     }
 
 }
