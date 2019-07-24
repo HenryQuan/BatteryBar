@@ -36,7 +36,10 @@ class Battery {
     /// Get more detailed information like design/max capacity, cycle count and an estimated battery health.
     /// All data are from ioreg command
     func getDetailedBatteryInfo() -> String {
-        return "No info\nTry again later\nNo info\nTry again later\nNo info\nTry again later\nNo info\nTry again later"
+        // Get output from ioreg -brc AppleSmartBattery
+        let output = Utils.runCommand(cmd: "/usr/sbin/ioreg", args: "-brc", "AppleSmartBattery").output.joined(separator: "\n")
+        print(output)
+        return output
     }
     
 }

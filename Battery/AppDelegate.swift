@@ -42,9 +42,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: "About BatteryBar", action: #selector(showAbout), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
         
-        // Add more items
-        let info = self.battery.getDetailedBatteryInfo().split(separator: "\n")
-        for s in info {
+        // Add more items depeding on output
+        var info = self.battery.getDetailedBatteryInfo()
+        if info == "" {
+            // Provide a default value
+            info = "No information available"
+        }
+        
+        // Add menu items based on output
+        let output = info.split(separator: "\n")
+        for s in output {
             menu.addItem(NSMenuItem(title: String(s), action: nil, keyEquivalent: ""))
         }
         
