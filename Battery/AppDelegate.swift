@@ -64,16 +64,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Open my github repo
     @objc func showGitHub() {
         let url = URL(string: "https://github.com/HenryQuan/BatteryBar")!
-        let ws = NSWorkspace.init()
+        let ws = NSWorkspace()
         ws.open(url)
     }
     
     /// Show about alert
     @objc func showAbout() {
-        let alert = NSAlert.init()
+        let alert = NSAlert()
         alert.messageText = "BatteryBar shows an estimation of how much time remaining for your MacBook"
-        
         alert.runModal()
+    }
+    
+    /// Show everything inside an alert
+    @objc func showAllInfor() {
+        let alert = NSAlert.init()
     }
     
     /// Update menu bar time display

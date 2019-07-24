@@ -10,6 +10,8 @@ import Cocoa
 
 class Battery {
 
+    var allInfo = ""
+    
     /// Get time remaining for this machine
     /// Returns a string like 2:12 remaning
     func updateTimeRemaining() -> String {
@@ -37,15 +39,45 @@ class Battery {
     /// All data are from ioreg command
     func getDetailedBatteryInfo() -> String {
         // Get output from ioreg -brc AppleSmartBattery
-        let output = Utils.runCommand(cmd: "/usr/sbin/ioreg", args: "-brc", "AppleSmartBattery").output.joined(separator: "\n")
+        let output = Utils.runCommand(cmd: "/usr/sbin/ioreg", args: "-brc", "AppleSmartBattery")
+            .output.dropLast().dropFirst().joined(separator: "\n")
+        self.allInfo = self.formatOutput(output: output)
         
         let matches = Utils.matches(for: "\"(.*?)\" = (.*)", in: output)
-        var finalOutput = ""
+        // To format nicelt
+        var max = 0
+        var cycle = 0
+        var design = 0
+        
         for m in matches {
-            
+            let curr = IORegString(output: m)
+            switch curr.description {
+            case "MaxCapacity":
+                max = curr.convertValue() as! Int
+            case "CycleCount":
+                cycle = curr.convertValue() as! Int
+            case "DesignCapacity":
+                design = curr.convertValue() as! Int
+            default:
+                break
+            }
         }
         
-        return finalOutput
+        var finalResult = ""
+        // There must be a design capcacity, if not we failed to get any data
+        if design > 0 {
+            finalResult += "Cycle count: \(cycle)/1000\n"
+            let percentage = max * 100 / design
+            finalResult += "Battery health: \(max)/\(design) (\(percentage)%)\n"
+        }
+        return finalResult
+    }
+    
+    /// Remove = and "
+    private func formatOutput(output: String) -> String {
+        var t = output.replacingOccurrences(of: " =", with: ":")
+        t = t.replacingOccurrences(of: "\"", with: "")
+        return t
     }
     
 }

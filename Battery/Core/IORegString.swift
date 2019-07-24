@@ -13,9 +13,6 @@ class IORegString {
     var description = ""
     var value = ""
     
-    // A list of useful descriptions
-    private let useful = ["", "", "", "", "", "", "", ""]
-    
     init(output: String) {
         // Parse string
         if output != "" {
@@ -27,6 +24,21 @@ class IORegString {
     
     /// Remove white spaces from Substring
     private func removeWhitespace(input: Substring) -> String {
-        return String(input).replacingOccurrences(of: " ", with: "")
+        var i = String(input)
+        i = i.replacingOccurrences(of: " ", with: "")
+        i = i.replacingOccurrences(of: "\"", with: "")
+        return i
     }
+    
+    /// Convert string to corresponding values
+    func convertValue() -> Any {
+        if value == "Yes" {
+            return true
+        } else if value == "No" {
+            return false
+        } else {
+            return Int(value)!
+        }
+    }
+    
 }
