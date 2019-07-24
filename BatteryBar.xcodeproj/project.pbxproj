@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		92675B8C22DC8AB0009B8559 /* Battery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Battery.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92675B8C22DC8AB0009B8559 /* BatteryBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BatteryBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92675B8F22DC8AB0009B8559 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92675B9322DC8AB2009B8559 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92675B9622DC8AB2009B8559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		92675B8D22DC8AB0009B8559 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				92675B8C22DC8AB0009B8559 /* Battery.app */,
+				92675B8C22DC8AB0009B8559 /* BatteryBar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,7 +61,6 @@
 				92675B9522DC8AB2009B8559 /* Main.storyboard */,
 				92675B9822DC8AB2009B8559 /* Info.plist */,
 				92675B9922DC8AB2009B8559 /* Battery.entitlements */,
-				929E5A1422E2B4CE00FBEE1A /* Constant.swift */,
 			);
 			path = Battery;
 			sourceTree = "<group>";
@@ -69,6 +68,7 @@
 		92DD8E1722E83A920012C96B /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				929E5A1422E2B4CE00FBEE1A /* Constant.swift */,
 				92DD8E1822E83AAB0012C96B /* Utils.swift */,
 			);
 			path = Core;
@@ -77,9 +77,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		92675B8B22DC8AB0009B8559 /* Battery */ = {
+		92675B8B22DC8AB0009B8559 /* BatteryBar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 92675B9C22DC8AB2009B8559 /* Build configuration list for PBXNativeTarget "Battery" */;
+			buildConfigurationList = 92675B9C22DC8AB2009B8559 /* Build configuration list for PBXNativeTarget "BatteryBar" */;
 			buildPhases = (
 				92675B8822DC8AB0009B8559 /* Sources */,
 				92675B8922DC8AB0009B8559 /* Frameworks */,
@@ -89,9 +89,9 @@
 			);
 			dependencies = (
 			);
-			name = Battery;
+			name = BatteryBar;
 			productName = Battery;
-			productReference = 92675B8C22DC8AB0009B8559 /* Battery.app */;
+			productReference = 92675B8C22DC8AB0009B8559 /* BatteryBar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -109,7 +109,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 92675B8722DC8AB0009B8559 /* Build configuration list for PBXProject "Battery" */;
+			buildConfigurationList = 92675B8722DC8AB0009B8559 /* Build configuration list for PBXProject "BatteryBar" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -122,7 +122,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				92675B8B22DC8AB0009B8559 /* Battery */,
+				92675B8B22DC8AB0009B8559 /* BatteryBar */,
 			);
 		};
 /* End PBXProject section */
@@ -322,7 +322,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		92675B8722DC8AB0009B8559 /* Build configuration list for PBXProject "Battery" */ = {
+		92675B8722DC8AB0009B8559 /* Build configuration list for PBXProject "BatteryBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				92675B9A22DC8AB2009B8559 /* Debug */,
@@ -331,7 +331,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		92675B9C22DC8AB2009B8559 /* Build configuration list for PBXNativeTarget "Battery" */ = {
+		92675B9C22DC8AB2009B8559 /* Build configuration list for PBXNativeTarget "BatteryBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				92675B9D22DC8AB2009B8559 /* Debug */,

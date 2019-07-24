@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.updateMenu(text: self.updateTimeRemain())
         // Update time remains everything 10 second
-        timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (_) in
+        timer = Timer.scheduledTimer(withTimeInterval: 6, repeats: true) { (_) in
             self.updateMenu(text: self.updateTimeRemain())
         }
     }
@@ -38,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: "GitHub", action: #selector(showGitHub), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "About", action: #selector(showAbout), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Quit BatteryBar", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         
         statusItem.menu = menu
     }
