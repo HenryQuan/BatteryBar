@@ -9,6 +9,6 @@
 import Cocoa
 
 struct Constant {
-    static let Version = "BatteryBar 1.0 (5)"
+    static let Version = "BatteryBar 1.1"
     static let Estimate = "?:??"
 }

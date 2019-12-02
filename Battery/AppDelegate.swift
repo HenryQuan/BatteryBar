@@ -9,7 +9,7 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     var timer: Timer?
     // From https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos
@@ -17,14 +17,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.variableLength)
     
     var battery = Battery()
+    let menu = NSMenu()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        menu.delegate = self
         self.setupMenu()
         
         self.updateMenu(text: self.battery.updateTimeRemaining())
         
-        // Update time remains everything 10 second
-        timer = Timer.scheduledTimer(withTimeInterval: 6, repeats: true) { (_) in
+        // Update time remains everything 5 second
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (_) in
             self.updateMenu(text: self.battery.updateTimeRemaining())
         }
     }
@@ -34,9 +36,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.timer = nil
     }
     
+    func menuWillOpen(_ menu: NSMenu) {
+        // Remove everything and add it again
+        menu.removeAllItems()
+        setupMenu()
+    }
+    
     func setupMenu() {
-        let menu = NSMenu()
-        
         menu.addItem(NSMenuItem(title: Constant.Version, action: nil, keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "Source code on GitHub", action: #selector(showGitHub), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "About BatteryBar", action: #selector(showAbout), keyEquivalent: ""))

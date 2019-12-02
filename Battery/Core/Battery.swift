@@ -38,6 +38,8 @@ class Battery {
     /// Get more detailed information like design/max capacity, cycle count and an estimated battery health.
     /// All data are from ioreg command
     func getDetailedBatteryInfo() -> String {
+        print("getDetailedBatteryInfo...")
+        
         // Get output from ioreg -brc AppleSmartBattery
         let output = Utils.runCommand(cmd: "/usr/sbin/ioreg", args: "-brc", "AppleSmartBattery")
             .output.dropLast().dropFirst().joined(separator: "\n")
@@ -69,8 +71,21 @@ class Battery {
             finalResult += "Cycle count: \(cycle)/1000\n"
             let percentage = max * 100 / design
             finalResult += "Battery health: \(max)/\(design) (\(percentage)%)\n"
+            // finalResult += "Uptime: \(self.getUpTime())\n"
         }
         return finalResult
+    }
+    
+    /// Get uptime from 'uptime' command
+    private func getUpTime() -> String {
+        let output = Utils.runCommand(cmd: "uptime", args: "").output.joined()
+        let matches = Utils.matches(for: "up (.*?),", in: output)
+        
+        var uptime = "??"
+        for m in matches {
+            print(m)
+        }
+        return uptime
     }
     
     /// Remove = and "
