@@ -84,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     /// Show about alert
     @objc func showAbout() {
         let alert = NSAlert()
-        alert.messageText = "BatteryBar shows an estimation of how much time remaining for your MacBook"
+        alert.messageText = Constant.AboutMessage
         alert.runModal()
     }
     

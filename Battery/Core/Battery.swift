@@ -71,19 +71,20 @@ class Battery {
             finalResult += "Cycle count: \(cycle)/1000\n"
             let percentage = max * 100 / design
             finalResult += "Battery health: \(max)/\(design) (\(percentage)%)\n"
-            // finalResult += "Uptime: \(self.getUpTime())\n"
+            finalResult += "Uptime: \(self.getUpTime())\n"
         }
         return finalResult
     }
     
     /// Get uptime from 'uptime' command
     private func getUpTime() -> String {
-        let output = Utils.runCommand(cmd: "uptime", args: "").output.joined()
+        let output = Utils.runCommand(cmd: "/usr/bin/uptime", args: "").output.joined()
         let matches = Utils.matches(for: "up (.*?),", in: output)
         
         var uptime = "??"
-        for m in matches {
-            print(m)
+        if matches.count > 0 {
+            // up 10:1, -> 10:1
+            uptime = String(matches[0].split(separator: " ")[1].split(separator: ",")[0])
         }
         return uptime
     }
