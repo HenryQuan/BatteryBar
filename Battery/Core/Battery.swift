@@ -20,11 +20,13 @@ class Battery {
         let output = Utils.runCommand(cmd: "/usr/bin/pmset", args: "-g", "batt").output
         
         // Find string with format 1:23
-        let matches = Utils.matches(for: "[0-9]+:[0-9]+", in: output[1])
-        if matches.count > 0 {
-            remain = matches[0]
+        if output.count > 1 {
+            let matches = Utils.matches(for: "[0-9]+:[0-9]+", in: output[1])
+            if matches.count > 0 {
+                remain = matches[0]
+            }
         }
-        
+
         // Add different emoji to distinguish different mode
         if output.joined().contains("discharg") {
             remain += "🔋"
@@ -71,8 +73,10 @@ class Battery {
             finalResult += "Cycle count: \(cycle)/1000\n"
             let percentage = max * 100 / design
             finalResult += "Battery health: \(max)/\(design) (\(percentage)%)\n"
-            finalResult += "Uptime: \(self.getUpTime())\n"
+        } else {
+            finalResult += "No battery information\n"
         }
+        finalResult += "Uptime: \(self.getUpTime())\n"
         return finalResult
     }
     
