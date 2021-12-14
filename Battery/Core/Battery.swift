@@ -79,12 +79,12 @@ class Battery {
     /// Get uptime from 'uptime' command
     private func getUpTime() -> String {
         let output = Utils.runCommand(cmd: "/usr/bin/uptime", args: "").output.joined()
-        let matches = Utils.matches(for: "up (.*?),", in: output)
+        let matches = output.groups(for: "up (.*?),")
         
         var uptime = "??"
-        if matches.count > 0 {
-            // up 10:1, -> 10:1
-            uptime = String(matches[0].split(separator: " ")[1].split(separator: ",")[0])
+        // check there are matches and make sure capture is also correct
+        if matches.count > 0, matches[0].count > 1 {
+            uptime = matches[0][1]
         }
         return uptime
     }

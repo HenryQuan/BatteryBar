@@ -11,13 +11,13 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
-    var timer: Timer?
+    private var timer: Timer?
     // From https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos
     // Define a menu
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
-    var battery = Battery()
-    let menu = NSMenu()
+    private let battery = Battery()
+    private let menu = NSMenu()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         menu.delegate = self
@@ -26,7 +26,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         updateMenu(text: battery.getTimeRemaining())
         
         // Update time remains everything 5 second
-        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
             self.updateMenu(text: self.battery.getTimeRemaining())
         }
     }
@@ -64,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         }
         
         // Display everything
-//        if hasInfo {
+//        if true {
 //            menu.addItem(NSMenuItem(title: "Show more info", action: #selector(showAllInfo), keyEquivalent: ""))
 //        }
         
@@ -75,28 +76,32 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     
     /// Open my github repo
-    @objc func showGitHub() {
+    @objc private func showGitHub() {
         let url = URL(string: "https://github.com/HenryQuan/BatteryBar")!
         let ws = NSWorkspace()
         ws.open(url)
     }
     
     /// Show about alert
-    @objc func showAbout() {
+    @objc private func showAbout() {
         let alert = NSAlert()
         alert.messageText = Constant.AboutMessage
         alert.runModal()
     }
     
     /// Show everything inside an alert
-    @objc func showAllInfo() {
+    @objc private func showAllInfo() {
         let alert = NSAlert()
         alert.messageText = battery.allInfo
         alert.runModal()
     }
     
     /// Update menu bar time display
-    func updateMenu(text: String) {
+    private func updateMenu(text: String) {
+        // update everything here
+        menu.removeAllItems()
+        setupMenu()
+        
         if let button = statusItem.button {
             button.title = text
         }
