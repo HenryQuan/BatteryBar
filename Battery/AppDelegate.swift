@@ -70,6 +70,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 //        }
         
         menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "Start with system", action: #selector(startWithSystem), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "Quit BatteryBar", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         
         statusItem.menu = menu
@@ -80,6 +81,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let url = URL(string: "https://github.com/HenryQuan/BatteryBar")!
         let ws = NSWorkspace()
         ws.open(url)
+    }
+    
+    @objc private func startWithSystem() {
+        let alert = NSAlert()
+        alert.messageText = Constant.BootWithSystemMessage
+        alert.runModal()
     }
     
     /// Show about alert
