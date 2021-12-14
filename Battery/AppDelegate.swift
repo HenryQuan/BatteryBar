@@ -14,26 +14,26 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     var timer: Timer?
     // From https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos
     // Define a menu
-    let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.variableLength)
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
     var battery = Battery()
     let menu = NSMenu()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         menu.delegate = self
-        self.setupMenu()
+        setupMenu()
         
-        self.updateMenu(text: self.battery.updateTimeRemaining())
+        updateMenu(text: battery.getTimeRemaining())
         
         // Update time remains everything 5 second
-        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (_) in
-            self.updateMenu(text: self.battery.updateTimeRemaining())
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+            self.updateMenu(text: self.battery.getTimeRemaining())
         }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-        self.timer = nil
+        timer?.invalidate()
+        timer = nil
     }
     
     func menuWillOpen(_ menu: NSMenu) {
@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         
         // Add more items depeding on output
         // var hasInfo = true
-        var info = self.battery.getDetailedBatteryInfo()
+        var info = battery.getDetailedBatteryInfo()
         if info == "" {
             // Provide a default value
             info = "No information available"
@@ -97,10 +97,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     
     /// Update menu bar time display
     func updateMenu(text: String) {
-        if let button = self.statusItem.button {
+        if let button = statusItem.button {
             button.title = text
         }
     }
-
 }
-

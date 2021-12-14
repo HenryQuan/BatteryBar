@@ -19,7 +19,7 @@ class Utils {
             return results.map {
                 String(text[Range($0.range, in: text)!])
             }
-        } catch let error {
+        } catch {
             print("invalid regex: \(error.localizedDescription)")
             return []
         }
@@ -28,9 +28,10 @@ class Utils {
     /// Run command
     /// from https://stackoverflow.com/questions/29514738/get-terminal-output-after-a-command-swift
     static func runCommand(cmd: String, args: String...) ->
-        (output: [String], error: [String], exitCode: Int32) {
-        var output : [String] = []
-        var error : [String] = []
+        (output: [String], error: [String], exitCode: Int32)
+    {
+        var output: [String] = []
+        var error: [String] = []
         
         let task = Process()
         task.launchPath = cmd

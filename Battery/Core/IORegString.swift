@@ -8,28 +8,24 @@
 
 import Cocoa
 
-class IORegString {
-    
-    var description = ""
-    var value = ""
-    
+struct IORegString {
+
+    let description: String
+    let value: String
+
     init(output: String) {
         // Parse string
         if output != "" {
             let temp = output.split(separator: "=")
-            self.description = self.removeWhitespace(input: temp[0])
-            self.value = self.removeWhitespace(input: temp[1])
+            description = Self.removeWhitespace(input: temp[0])
+            value = Self.removeWhitespace(input: temp[1])
+        } else {
+            assertionFailure("Output is invalid")
+            description = ""
+            value = ""
         }
     }
-    
-    /// Remove white spaces from Substring
-    private func removeWhitespace(input: Substring) -> String {
-        var i = String(input)
-        i = i.replacingOccurrences(of: " ", with: "")
-        i = i.replacingOccurrences(of: "\"", with: "")
-        return i
-    }
-    
+
     /// Convert string to corresponding values
     func convertValue() -> Any {
         if value == "Yes" {
@@ -40,5 +36,12 @@ class IORegString {
             return Int(value)!
         }
     }
-    
+
+    /// Remove white spaces from Substring
+    private static func removeWhitespace(input: Substring) -> String {
+        var i = String(input)
+        i = i.replacingOccurrences(of: " ", with: "")
+        i = i.replacingOccurrences(of: "\"", with: "")
+        return i
+    }
 }

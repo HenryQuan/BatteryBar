@@ -14,8 +14,8 @@ class Battery {
     
     /// Get time remaining for this machine
     /// Returns a string like 2:12 remaning
-    func updateTimeRemaining() -> String {
-        var remain = Constant.Estimate;
+    func getTimeRemaining() -> String {
+        var remain = Constant.Estimate
         // pmset -g batt
         let output = Utils.runCommand(cmd: "/usr/bin/pmset", args: "-g", "batt").output
         
@@ -95,5 +95,4 @@ class Battery {
         t = t.replacingOccurrences(of: "\"", with: "")
         return t
     }
-    
 }
