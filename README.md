@@ -1,5 +1,5 @@
 # Battery Bar
-Displaying time left for your MacBooks. Part of my [68 project](https://github.com/HenryQuan/68).
+Displaying time left for your MacBooks. Part of my [Battery68 project](https://github.com/HenryQuan/68). Due to my job, I am back again using MacBook and maybe more features will be added.
 
 ## Motivations
 Recently, I got an old 2011 MacBook Pro 15 and I was concerned about its battery life. Therefore, this app was created. 
