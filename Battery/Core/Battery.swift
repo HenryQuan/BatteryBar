@@ -16,6 +16,7 @@ class Battery {
     /// Returns a string like 2:12 remaning
     func getTimeRemaining() -> String {
         var remain = Constant.Estimate
+        var batteryPercentage = ""
         // pmset -g batt
         let output = Utils.runCommand(cmd: "/usr/bin/pmset", args: "-g", "batt").output
         
@@ -25,6 +26,11 @@ class Battery {
             if matches.count > 0 {
                 remain = matches[0]
             }
+            
+            let percentMatches = Utils.matches(for: "[0-9]+%", in: output[1])
+            if percentMatches.count > 0 {
+                batteryPercentage = percentMatches[0]
+            }
         }
 
         // Add different emoji to distinguish different mode
@@ -33,6 +39,9 @@ class Battery {
         } else {
             remain += "⚡️"
         }
+        
+        // Add the percentage
+        remain += batteryPercentage
         
         return remain
     }
@@ -57,6 +66,12 @@ class Battery {
             let curr = IORegString(output: m)
             switch curr.description {
             case "MaxCapacity":
+                let capacity = curr.convertValue() as! Int
+                if (capacity > 1000) {
+                    #warning("This is 100 on M1")
+                    max = capacity
+                }
+            case "AppleRawMaxCapacity":
                 max = curr.convertValue() as! Int
             case "CycleCount":
                 cycle = curr.convertValue() as! Int
